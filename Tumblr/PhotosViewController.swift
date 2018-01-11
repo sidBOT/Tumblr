@@ -23,8 +23,11 @@ class PhotosViewController: UIViewController {
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                print(dataDictionary)
-                
+                //print(dataDictionary)
+                if let response:[String:Any] = dataDictionary["response"] as? [String : Any] {
+                    self.posts = response["posts"] as! [[String : Any]]
+                    print(self.posts)
+                }
                 // TODO: Get the posts and store in posts property
                 
                 // TODO: Reload the table view
