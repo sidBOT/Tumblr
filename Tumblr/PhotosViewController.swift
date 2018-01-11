@@ -24,7 +24,7 @@ class PhotosViewController: UIViewController {
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 //print(dataDictionary)
-                if let response:[String:Any] = dataDictionary["response"] as? [String : Any] {
+                if let response = dataDictionary["response"] as? [String : Any] {
                     self.posts = response["posts"] as! [[String : Any]]
                     print(self.posts)
                 }
