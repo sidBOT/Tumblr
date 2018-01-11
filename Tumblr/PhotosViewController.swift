@@ -8,12 +8,15 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UITableViewDelegate {
 
     var posts: [[String: Any]] = []
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
         
         let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -24,10 +27,8 @@ class PhotosViewController: UIViewController {
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 //print(dataDictionary)
-                if let response = dataDictionary["response"] as? [String : Any] {
-                    self.posts = response["posts"] as! [[String : Any]]
-                    print(self.posts)
-                }
+                let responseDictionary = dataDictionary["response"] as! [String: Any]
+                self.posts = responseDictionary["posts"] as! [[String: Any]]
                 // TODO: Get the posts and store in posts property
                 
                 // TODO: Reload the table view
@@ -38,11 +39,5 @@ class PhotosViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-
 }
