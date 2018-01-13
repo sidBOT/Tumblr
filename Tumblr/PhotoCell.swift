@@ -23,12 +23,6 @@ class PhotoCell: UITableViewCell {
 
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as! PhotoCell
-        
-        
-        
-        return cell
-    }
+    
 
 }
