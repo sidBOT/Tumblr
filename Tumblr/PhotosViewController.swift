@@ -38,6 +38,24 @@ class PhotosViewController: UIViewController, UITableViewDelegate {
 
         // Do any additional setup after loading the view.
     }
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
     
+    @nonobjc func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let post = posts[indexPath.row]
+        if let photos = post["photos"] as? [[String: Any]] {
+            let photo = photos[0]
+            
+            let originalSize = photo["original_size"] as! [String: Any]
+            
+            let urlString = originalSize["url"] as! String
+            
+            let url = URL(string: urlString)
+        }
+        
+        return cell
+    }
+
 }
