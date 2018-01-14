@@ -1,3 +1,3 @@
 # Tumblr
 
-CS 490 Lab1 Project
+CS 490 Week1 Project
